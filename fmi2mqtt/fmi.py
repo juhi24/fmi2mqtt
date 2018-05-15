@@ -6,8 +6,7 @@ import pandas as pd
 from os import environ
 from lxml import etree
 from owslib.wfs import WebFeatureService
-
-API_KEY = environ['FMI_API_KEY']
+from config import config
 
 
 def tz_local():
@@ -23,8 +22,12 @@ def starttime_str(minutes=20, **kws):
     return t_start.isoformat(timespec='minutes')
 
 
-def fmi_wfs(key=API_KEY):
+def fmi_wfs(key=None):
     """FMI WebFeatureService"""
+    try:
+        key = key or config['fmi']['api_key']
+    except KeyError:
+        raise KeyError('FMI API key not configured.')
     url_wfs = 'http://data.fmi.fi/fmi-apikey/{}/wfs'.format(key)
     return WebFeatureService(url=url_wfs, version='2.0.0')
 
