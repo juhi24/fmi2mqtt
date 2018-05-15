@@ -56,7 +56,16 @@ def get_weather_simple(**kws):
     return parse_weather_simple(response)
 
 
+def get_latest(param='t2m', **kws):
+    """Get latest timestamp (local time) and weather observation as tuple."""
+    latest = get_weather_simple(parameters=param, **kws).iloc[-1]
+    timestamp = latest.name.tz_convert(tz_local())
+    return timestamp, latest[param]
+
+
+
 if __name__ == '__main__':
-    weather = get_weather_simple(place='kumpula', parameters='t2m,p_sea')
+    #weather = get_weather_simple(place='kumpula', parameters='t2m,p_sea')
+    pass
 
 
