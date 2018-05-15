@@ -1,0 +1,19 @@
+[fmi]
+api_key =
+
+[query]
+# http://data.fmi.fi/fmi-apikey/YOUR_API_KEY/wfs?request=describeStoredQueries&storedquery_id=fmi::observations::weather::simple
+parameters = t2m
+place = kumpula
+#timestep =
+# FMI observation station identifier.
+#fmisid =
+# Geoid of the location for which to return data. (ID from geonames.org)
+#geoid =
+# WMO code of the location for which to return data.
+#wmo =
+
+[mqtt]
+#host = localhost
+#username =
+#password =
