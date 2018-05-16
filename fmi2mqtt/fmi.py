@@ -19,7 +19,10 @@ def starttime_str(minutes=20, **kws):
     now = datetime.datetime.utcnow()
     dt = datetime.timedelta(minutes=minutes, **kws)
     t_start = now-dt
-    return t_start.isoformat(timespec='minutes')
+    try:
+        return t_start.isoformat(timespec='minutes') # python >= 3.6
+    except TypeError:
+        return t_start.strftime('%Y-%m-%dT%H:%M') # legacy
 
 
 def fmi_wfs(key=None):
