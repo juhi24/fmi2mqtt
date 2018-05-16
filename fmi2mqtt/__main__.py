@@ -15,11 +15,14 @@ def main():
         weather = fmi.get_weather_simple(**config['query']).iloc[-1]
         for param, value in weather.iteritems():
             topic = topicfmt.format(place=get_place(), param=param)
+            print('published {}: {}'.format(topic, value))
             publish.single(topic, value, hostname=config['mqtt']['host'],
                            auth=config['mqtt'])
-        if killer.kill_now:
-            break
-        time.sleep(300)
+        # check every 5 sec if process needs to be killed
+        for i in range(60):
+            if killer.kill_now:
+                break
+            time.sleep(5)
     print('Stopped gracefully.')
 
 
