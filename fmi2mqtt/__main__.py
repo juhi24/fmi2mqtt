@@ -17,12 +17,15 @@ def main():
             topic = topicfmt.format(place=get_place(), param=param)
             print('published {}: {}'.format(topic, value))
             publish.single(topic, value, hostname=config['mqtt']['host'],
-                           auth=config['mqtt'])
+                           auth=config['mqtt'], retain=True)
         # check every 5 sec if process needs to be killed
         for i in range(60):
             if killer.kill_now:
                 break
             time.sleep(5)
+        else:
+            continue
+        break
     print('Stopped gracefully.')
 
 
