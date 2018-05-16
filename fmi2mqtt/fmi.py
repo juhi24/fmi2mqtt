@@ -6,7 +6,7 @@ import pandas as pd
 from os import environ
 from lxml import etree
 from owslib.wfs import WebFeatureService
-from config import config
+from fmi2mqtt.config import config
 
 
 def tz_local():

@@ -4,7 +4,7 @@
 import time
 from paho.mqtt import publish
 import fmi
-from config import config, get_place
+from fmi2mqtt.config import config, get_place
 from j24.server import GracefulKiller
 
 
