@@ -1,0 +1,12 @@
+[Unit]
+Description=FMI open data to MQTT publisher
+After=network.target
+
+[Service]
+User=fmi2mqtt
+Group=fmi2mqtt
+WorkingDirectory=/var/lib/fmi2mqtt
+ExecStart=/var/lib/fmi2mqtt/.virtualenvs/py35/bin/fmi2mqtt
+
+[Install]
+WantedBy=multi-user.target
